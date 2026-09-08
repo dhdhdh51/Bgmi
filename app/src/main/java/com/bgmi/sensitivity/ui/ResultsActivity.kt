@@ -8,6 +8,7 @@ import android.os.Build
 import android.os.Bundle
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bgmi.sensitivity.R
 import com.bgmi.sensitivity.data.SensitivityNote
 import com.bgmi.sensitivity.data.SensitivityResult
@@ -40,6 +41,8 @@ class ResultsActivity : AppCompatActivity() {
         binding.toolbar.setNavigationOnClickListener { finish() }
 
         val adapter = SensitivityAdapter { label, value -> copy(label, value.toString()) }
+        // A RecyclerView with no LayoutManager silently lays out nothing at all.
+        binding.recyclerSensitivity.layoutManager = LinearLayoutManager(this)
         binding.recyclerSensitivity.adapter = adapter
         adapter.submit(SensitivityPresenter.buildItems(this, result, showGyroscope))
 

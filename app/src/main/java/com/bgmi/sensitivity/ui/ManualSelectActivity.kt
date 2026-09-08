@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bgmi.sensitivity.R
 import com.bgmi.sensitivity.data.HistoryStore
 import com.bgmi.sensitivity.data.PhoneDatabase
@@ -37,6 +38,8 @@ class ManualSelectActivity : AppCompatActivity() {
         binding.toolbar.setNavigationOnClickListener { finish() }
 
         adapter = PhoneAdapter { phone -> recommendFor(phone) }
+        // A RecyclerView with no LayoutManager silently lays out nothing at all.
+        binding.recyclerPhones.layoutManager = LinearLayoutManager(this)
         binding.recyclerPhones.adapter = adapter
 
         binding.inputSearch.doAfterTextChanged { text ->

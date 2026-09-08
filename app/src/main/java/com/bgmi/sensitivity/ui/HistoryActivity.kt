@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bgmi.sensitivity.R
 import com.bgmi.sensitivity.data.HistoryStore
 import com.bgmi.sensitivity.databinding.ActivityHistoryBinding
@@ -47,6 +48,8 @@ class HistoryActivity : AppCompatActivity() {
                 ).show()
             },
         )
+        // A RecyclerView with no LayoutManager silently lays out nothing at all.
+        binding.recyclerHistory.layoutManager = LinearLayoutManager(this)
         binding.recyclerHistory.adapter = adapter
     }
 
