@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        No permissions are declared, on purpose. The app calculates everything
+        on-device from a bundled phone list, so it needs no internet access.
+    -->
+
+    <!-- The recommendation includes gyroscope values when one is present, but
+         the app is fully usable without one. -->
+    <uses-feature
+        android:name="android.hardware.sensor.gyroscope"
+        android:required="false" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.BgmiSensitivity">
+
+        <activity
+            android:name=".ui.HomeActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.ManualSelectActivity"
+            android:exported="false"
+            android:label="@string/title_manual_select"
+            android:parentActivityName=".ui.HomeActivity" />
+
+        <activity
+            android:name=".ui.ResultsActivity"
+            android:exported="false"
+            android:label="@string/title_results"
+            android:parentActivityName=".ui.HomeActivity" />
+
+        <activity
+            android:name=".ui.HistoryActivity"
+            android:exported="false"
+            android:label="@string/title_history"
+            android:parentActivityName=".ui.HomeActivity" />
+    </application>
+
+</manifest>
