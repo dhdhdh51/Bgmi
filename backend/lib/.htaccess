@@ -1,2 +1,0 @@
-# Nothing in lib/ is a web endpoint — it is only ever included by index.php.
-Require all denied

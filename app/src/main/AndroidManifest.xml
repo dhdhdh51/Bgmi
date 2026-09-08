@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--
+        No permissions are declared, on purpose. The app calculates everything
+        on-device from a bundled phone list, so it needs no internet access.
+    -->
 
-    <!-- The recommendation quality improves with a gyroscope but the app is
-         fully usable without one, so the feature is not required. -->
+    <!-- The recommendation includes gyroscope values when one is present, but
+         the app is fully usable without one. -->
     <uses-feature
         android:name="android.hardware.sensor.gyroscope"
         android:required="false" />
@@ -16,8 +18,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BgmiSensitivity"
-        android:usesCleartextTraffic="false">
+        android:theme="@style/Theme.BgmiSensitivity">
 
         <activity
             android:name=".ui.HomeActivity"
@@ -44,12 +45,6 @@
             android:name=".ui.HistoryActivity"
             android:exported="false"
             android:label="@string/title_history"
-            android:parentActivityName=".ui.HomeActivity" />
-
-        <activity
-            android:name=".ui.FeedbackActivity"
-            android:exported="false"
-            android:label="@string/title_feedback"
             android:parentActivityName=".ui.HomeActivity" />
     </application>
 

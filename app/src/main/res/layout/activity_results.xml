@@ -19,11 +19,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="4dp"
         android:background="?attr/colorPrimaryContainer"
+        android:lineSpacingExtra="2dp"
         android:padding="12dp"
         android:textAppearance="?attr/textAppearanceBodySmall"
         android:textColor="?attr/colorOnPrimaryContainer" />
+
+    <TextView
+        android:id="@+id/textBasis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="4dp"
+        android:textAppearance="?attr/textAppearanceBodySmall"
+        android:textColor="?android:attr/textColorSecondary" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerSensitivity"
@@ -54,13 +64,5 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/action_copy_all" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonFeedback"
-            style="@style/Widget.Material3.Button.TextButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/action_send_feedback" />
     </LinearLayout>
 </LinearLayout>

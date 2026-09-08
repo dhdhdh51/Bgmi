@@ -6,10 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.bgmi.sensitivity.R
-import com.bgmi.sensitivity.data.ApiClient
-import com.bgmi.sensitivity.data.ApiException
 import com.bgmi.sensitivity.data.DeviceSpecs
 import com.bgmi.sensitivity.data.HistoryStore
+import com.bgmi.sensitivity.data.PhoneDatabase
+import com.bgmi.sensitivity.data.SensitivityCalculator
 import com.bgmi.sensitivity.databinding.ActivityHomeBinding
 import com.bgmi.sensitivity.device.DeviceSpecsHelper
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -18,7 +18,9 @@ import kotlinx.coroutines.launch
 
 /**
  * Home screen: one prominent "Detect my device" button that reads the real
- * hardware specs, asks the backend for a recommendation, and opens the results.
+ * hardware specs, calculates a recommendation on-device and opens the results.
+ *
+ * Everything here works with no network connection.
  */
 class HomeActivity : AppCompatActivity() {
 
@@ -50,9 +52,14 @@ class HomeActivity : AppCompatActivity() {
         showSpecs(specs)
 
         lifecycleScope.launch {
-            setLoading(true, R.string.requesting)
+            setLoading(true, R.string.calculating)
             try {
-                val result = ApiClient.calculateSensitivity(specs)
+                // The built-in phone list supplies the touch sampling rate, which
+                // no public Android API reports.
+                val database = PhoneDatabase.load(this@HomeActivity)
+                val match = database.findBestMatch(specs.model, specs.manufacturer)
+                val result = SensitivityCalculator.recommend(specs, match)
+
                 historyStore.save(result)
                 startActivity(
                     ResultsActivity.intent(
@@ -64,10 +71,8 @@ class HomeActivity : AppCompatActivity() {
                 )
             } catch (cancellation: CancellationException) {
                 throw cancellation
-            } catch (api: ApiException) {
-                showError(api.message ?: getString(R.string.error_title))
             } catch (e: Exception) {
-                showError(getString(R.string.error_generic, e.message ?: e.javaClass.simpleName))
+                showError(getString(R.string.error_database) + "\n\n(${e.message ?: e.javaClass.simpleName})")
             } finally {
                 setLoading(false)
             }

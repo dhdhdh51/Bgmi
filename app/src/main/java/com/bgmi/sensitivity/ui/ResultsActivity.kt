@@ -6,8 +6,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import com.bgmi.sensitivity.R
+import com.bgmi.sensitivity.data.SensitivityNote
 import com.bgmi.sensitivity.data.SensitivityResult
 import com.bgmi.sensitivity.databinding.ActivityResultsBinding
 import com.google.android.material.snackbar.Snackbar
@@ -41,11 +43,8 @@ class ResultsActivity : AppCompatActivity() {
         binding.recyclerSensitivity.adapter = adapter
         adapter.submit(SensitivityPresenter.buildItems(this, result, showGyroscope))
 
-        binding.textBanner.text = if (result.isEstimate) {
-            getString(R.string.banner_estimate)
-        } else {
-            getString(R.string.banner_matched)
-        }
+        showBanner()
+        showBasis()
 
         binding.buttonCopyAll.setOnClickListener {
             copy(
@@ -54,13 +53,49 @@ class ResultsActivity : AppCompatActivity() {
             )
         }
 
-        binding.buttonFeedback.setOnClickListener {
-            startActivity(FeedbackActivity.intent(this, result.model, result.phoneId))
-        }
-
         if (intent.getBooleanExtra(EXTRA_JUST_SAVED, false) && savedInstanceState == null) {
             Snackbar.make(binding.root, R.string.saved_to_history, Snackbar.LENGTH_SHORT).show()
         }
+    }
+
+    /**
+     * States plainly whether this is an exact match or partly assumed, listing
+     * every assumption that was made.
+     */
+    private fun showBanner() {
+        binding.textBanner.text = if (result.isEstimate || result.notes.isNotEmpty()) {
+            buildString {
+                append(getString(R.string.banner_estimate))
+                result.notes.forEach { note ->
+                    append("\n• ")
+                    append(getString(note.stringRes()))
+                }
+            }
+        } else {
+            getString(R.string.banner_matched)
+        }
+    }
+
+    private fun showBasis() {
+        val screen = if (result.basis.screenSizeInches > 0) {
+            getString(R.string.value_inches, result.basis.screenSizeInches)
+        } else {
+            getString(R.string.value_unknown)
+        }
+        binding.textBasis.text = getString(
+            R.string.results_basis,
+            screen,
+            result.basis.refreshRateHz,
+            result.basis.touchSamplingRateHz,
+        )
+    }
+
+    @StringRes
+    private fun SensitivityNote.stringRes(): Int = when (this) {
+        SensitivityNote.PHONE_NOT_IN_DATABASE -> R.string.note_phone_not_in_database
+        SensitivityNote.SCREEN_SIZE_ASSUMED -> R.string.note_screen_size_assumed
+        SensitivityNote.REFRESH_RATE_ASSUMED -> R.string.note_refresh_rate_assumed
+        SensitivityNote.TOUCH_SAMPLING_ASSUMED -> R.string.note_touch_sampling_assumed
     }
 
     private fun parseResult(json: String?): SensitivityResult? {

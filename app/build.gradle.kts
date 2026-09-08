@@ -1,28 +1,8 @@
-import java.util.Properties
-
 plugins {
     alias(libs.plugins.android.application)
     // No Kotlin plugin on purpose: AGP 9.x compiles Kotlin out of the box
     // (built-in Kotlin). Applying org.jetbrains.kotlin.android here would fail.
 }
-
-// ---------------------------------------------------------------------------
-// Backend base URL resolution order:
-//   1. -Pbgmi.apiBaseUrl=... on the Gradle command line
-//   2. bgmi.apiBaseUrl in local.properties (git-ignored, good for dev machines)
-//   3. bgmi.apiBaseUrl in gradle.properties (checked in default)
-// ---------------------------------------------------------------------------
-val localProperties = Properties().apply {
-    val file = rootProject.file("local.properties")
-    if (file.exists()) file.inputStream().use { load(it) }
-}
-
-val apiBaseUrl: String = listOf(
-    providers.gradleProperty("bgmi.apiBaseUrl").orNull,
-    localProperties.getProperty("bgmi.apiBaseUrl"),
-).firstOrNull { !it.isNullOrBlank() }?.trim()
-    ?.let { if (it.endsWith("/")) it else "$it/" }
-    ?: "https://example.com/api/"
 
 // The CI workflow decodes KEYSTORE_BASE64 into app/release.keystore before
 // calling assembleRelease. When that file is absent (local dev, forks without
@@ -41,8 +21,6 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "1.0.0"
-
-        buildConfigField("String", "API_BASE_URL", "\"$apiBaseUrl\"")
     }
 
     signingConfigs {
@@ -76,7 +54,6 @@ android {
     }
 
     buildFeatures {
-        buildConfig = true
         viewBinding = true
     }
 
@@ -104,9 +81,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.recyclerview)
-    implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.kotlinx.coroutines.android)
 

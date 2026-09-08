@@ -21,9 +21,6 @@ keystore_base64.txt
 *.dex
 output.json
 
-## PHP backend local configuration (contains DB credentials)
-backend/config.php
-
 ## OS / editor noise
 .DS_Store
 Thumbs.db

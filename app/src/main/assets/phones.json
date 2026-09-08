@@ -1,0 +1,472 @@
+{
+  "_comment": [
+    "Bundled phone-spec database used to fill in the touch sampling rate, which no public Android API exposes.",
+    "screen_size_inches and refresh_rate_hz are published manufacturer figures; density_dpi is the reported Android bucket.",
+    "touch_sampling_rate_hz values are conservative steady-state estimates: vendors quote peak rates the panel does not sustain.",
+    "build_model_codes holds raw Build.MODEL strings (adb shell getprop ro.product.model) so detection matches phones that report an internal code.",
+    "See README.md section 'Adding or correcting phones'."
+  ],
+  "version": 1,
+  "updated": "2026-09-08",
+  "phones": [
+    {
+      "manufacturer": "Xiaomi",
+      "model": "Redmi Note 13 Pro",
+      "screen_size_inches": 6.67,
+      "density_dpi": 440,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "Xiaomi",
+      "model": "Redmi Note 13",
+      "screen_size_inches": 6.67,
+      "density_dpi": 440,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "Xiaomi",
+      "model": "Redmi Note 12 Pro",
+      "screen_size_inches": 6.67,
+      "density_dpi": 440,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "Xiaomi",
+      "model": "Redmi Note 12",
+      "screen_size_inches": 6.67,
+      "density_dpi": 440,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "Xiaomi",
+      "model": "Redmi Note 11",
+      "screen_size_inches": 6.43,
+      "density_dpi": 409,
+      "refresh_rate_hz": 90,
+      "touch_sampling_rate_hz": 180,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "Xiaomi",
+      "model": "Redmi Note 10 Pro",
+      "screen_size_inches": 6.67,
+      "density_dpi": 440,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "Xiaomi",
+      "model": "Redmi 13C",
+      "screen_size_inches": 6.74,
+      "density_dpi": 400,
+      "refresh_rate_hz": 90,
+      "touch_sampling_rate_hz": 120,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "Xiaomi",
+      "model": "Xiaomi 14",
+      "screen_size_inches": 6.36,
+      "density_dpi": 460,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 480,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "Xiaomi",
+      "model": "Xiaomi 13",
+      "screen_size_inches": 6.36,
+      "density_dpi": 440,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 480,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "Xiaomi",
+      "model": "Poco X6 Pro",
+      "screen_size_inches": 6.67,
+      "density_dpi": 440,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 480,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "Xiaomi",
+      "model": "Poco X5 Pro",
+      "screen_size_inches": 6.67,
+      "density_dpi": 440,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "Xiaomi",
+      "model": "Poco F5",
+      "screen_size_inches": 6.67,
+      "density_dpi": 440,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 480,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "Xiaomi",
+      "model": "Poco M6 Pro",
+      "screen_size_inches": 6.79,
+      "density_dpi": 395,
+      "refresh_rate_hz": 90,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "realme",
+      "model": "realme 11 Pro",
+      "screen_size_inches": 6.7,
+      "density_dpi": 440,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "realme",
+      "model": "realme 9 Pro",
+      "screen_size_inches": 6.6,
+      "density_dpi": 400,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "realme",
+      "model": "realme narzo 60",
+      "screen_size_inches": 6.43,
+      "density_dpi": 409,
+      "refresh_rate_hz": 90,
+      "touch_sampling_rate_hz": 180,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "realme",
+      "model": "realme C55",
+      "screen_size_inches": 6.72,
+      "density_dpi": 400,
+      "refresh_rate_hz": 90,
+      "touch_sampling_rate_hz": 180,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "realme",
+      "model": "realme GT Neo 3",
+      "screen_size_inches": 6.7,
+      "density_dpi": 440,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 360,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "samsung",
+      "model": "Galaxy S23 Ultra",
+      "screen_size_inches": 6.8,
+      "density_dpi": 500,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "samsung",
+      "model": "Galaxy S23",
+      "screen_size_inches": 6.1,
+      "density_dpi": 425,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "samsung",
+      "model": "Galaxy S22",
+      "screen_size_inches": 6.1,
+      "density_dpi": 425,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "samsung",
+      "model": "Galaxy S21 FE",
+      "screen_size_inches": 6.4,
+      "density_dpi": 420,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "samsung",
+      "model": "Galaxy A54",
+      "screen_size_inches": 6.4,
+      "density_dpi": 403,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "samsung",
+      "model": "Galaxy A34",
+      "screen_size_inches": 6.6,
+      "density_dpi": 400,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "samsung",
+      "model": "Galaxy A14",
+      "screen_size_inches": 6.6,
+      "density_dpi": 400,
+      "refresh_rate_hz": 90,
+      "touch_sampling_rate_hz": 120,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "samsung",
+      "model": "Galaxy M14",
+      "screen_size_inches": 6.6,
+      "density_dpi": 400,
+      "refresh_rate_hz": 90,
+      "touch_sampling_rate_hz": 120,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "samsung",
+      "model": "Galaxy F23",
+      "screen_size_inches": 6.6,
+      "density_dpi": 400,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "OnePlus",
+      "model": "OnePlus 11",
+      "screen_size_inches": 6.7,
+      "density_dpi": 525,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 360,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "OnePlus",
+      "model": "OnePlus Nord 3",
+      "screen_size_inches": 6.74,
+      "density_dpi": 450,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "OnePlus",
+      "model": "OnePlus Nord CE 3 Lite",
+      "screen_size_inches": 6.72,
+      "density_dpi": 400,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "OnePlus",
+      "model": "OnePlus 9R",
+      "screen_size_inches": 6.55,
+      "density_dpi": 440,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 360,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "iQOO",
+      "model": "iQOO 11",
+      "screen_size_inches": 6.78,
+      "density_dpi": 500,
+      "refresh_rate_hz": 144,
+      "touch_sampling_rate_hz": 300,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "iQOO",
+      "model": "iQOO Neo 7",
+      "screen_size_inches": 6.78,
+      "density_dpi": 450,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 300,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "iQOO",
+      "model": "iQOO Z7",
+      "screen_size_inches": 6.38,
+      "density_dpi": 409,
+      "refresh_rate_hz": 90,
+      "touch_sampling_rate_hz": 180,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "vivo",
+      "model": "vivo T2 Pro",
+      "screen_size_inches": 6.78,
+      "density_dpi": 440,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "vivo",
+      "model": "vivo V27",
+      "screen_size_inches": 6.78,
+      "density_dpi": 440,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "vivo",
+      "model": "vivo Y100",
+      "screen_size_inches": 6.38,
+      "density_dpi": 409,
+      "refresh_rate_hz": 90,
+      "touch_sampling_rate_hz": 180,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "OPPO",
+      "model": "OPPO Reno 10",
+      "screen_size_inches": 6.7,
+      "density_dpi": 440,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "OPPO",
+      "model": "OPPO F23",
+      "screen_size_inches": 6.72,
+      "density_dpi": 400,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "motorola",
+      "model": "moto edge 40",
+      "screen_size_inches": 6.55,
+      "density_dpi": 440,
+      "refresh_rate_hz": 144,
+      "touch_sampling_rate_hz": 360,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "motorola",
+      "model": "moto g84",
+      "screen_size_inches": 6.55,
+      "density_dpi": 400,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "motorola",
+      "model": "moto g62",
+      "screen_size_inches": 6.55,
+      "density_dpi": 400,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "Nothing",
+      "model": "Nothing Phone (2)",
+      "screen_size_inches": 6.7,
+      "density_dpi": 460,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "Nothing",
+      "model": "Nothing Phone (1)",
+      "screen_size_inches": 6.55,
+      "density_dpi": 440,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "Google",
+      "model": "Pixel 8",
+      "screen_size_inches": 6.2,
+      "density_dpi": 420,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "Google",
+      "model": "Pixel 7a",
+      "screen_size_inches": 6.1,
+      "density_dpi": 420,
+      "refresh_rate_hz": 90,
+      "touch_sampling_rate_hz": 240,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "Infinix",
+      "model": "Infinix Note 30",
+      "screen_size_inches": 6.78,
+      "density_dpi": 400,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 180,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "Infinix",
+      "model": "Infinix Zero 5G",
+      "screen_size_inches": 6.78,
+      "density_dpi": 400,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 180,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "TECNO",
+      "model": "TECNO POVA 5",
+      "screen_size_inches": 6.78,
+      "density_dpi": 400,
+      "refresh_rate_hz": 120,
+      "touch_sampling_rate_hz": 180,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "asus",
+      "model": "ROG Phone 7",
+      "screen_size_inches": 6.78,
+      "density_dpi": 400,
+      "refresh_rate_hz": 165,
+      "touch_sampling_rate_hz": 720,
+      "build_model_codes": []
+    },
+    {
+      "manufacturer": "asus",
+      "model": "ROG Phone 6",
+      "screen_size_inches": 6.78,
+      "density_dpi": 400,
+      "refresh_rate_hz": 165,
+      "touch_sampling_rate_hz": 720,
+      "build_model_codes": []
+    }
+  ]
+}

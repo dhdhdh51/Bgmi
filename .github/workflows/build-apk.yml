@@ -1,5 +1,8 @@
 name: Build Signed APK
 
+# The app is fully self-contained: there is no backend to configure, so this
+# workflow only has to build, sign and publish the APK.
+#
 # Action versions below were checked against the latest published releases in
 # September 2026: checkout v7, setup-java v6, upload-artifact v7.
 #
@@ -56,10 +59,40 @@ jobs:
           echo "Available platforms:"; ls -1 "${ANDROID_HOME}/platforms"
           echo "Available build-tools:"; ls -1 "${ANDROID_HOME}/build-tools"
 
-      - name: Lint PHP backend
+      - name: Check the bundled phone database is valid JSON
+        # The app cannot recommend anything without this asset, and a typo in it
+        # would only surface as a runtime crash on the user's phone.
         run: |
           set -euo pipefail
-          find backend -name '*.php' -print0 | xargs -0 -n1 php -l
+          python3 - <<'PY'
+          import json, sys
+          with open('app/src/main/assets/phones.json') as fh:
+              data = json.load(fh)
+          phones = data['phones']
+          required = ('manufacturer', 'model', 'screen_size_inches',
+                      'density_dpi', 'refresh_rate_hz', 'touch_sampling_rate_hz')
+          ranges = {'screen_size_inches': (3.0, 12.0),
+                    'refresh_rate_hz': (24, 480),
+                    'touch_sampling_rate_hz': (30, 3000)}
+          errors = []
+          seen = set()
+          for phone in phones:
+              label = phone.get('model') or '<no model>'
+              if label in seen:
+                  errors.append(f'{label}: duplicate model')
+              seen.add(label)
+              for key in required:
+                  if phone.get(key) in (None, ''):
+                      errors.append(f'{label}: missing {key}')
+              for key, (low, high) in ranges.items():
+                  value = phone.get(key)
+                  if isinstance(value, (int, float)) and not low <= value <= high:
+                      errors.append(f'{label}: {key}={value} is outside {low}-{high}')
+          print(f'{len(phones)} phones in the bundled database')
+          if errors:
+              print('\n'.join(errors))
+              sys.exit(1)
+          PY
 
       - name: Decode signing keystore
         id: keystore
@@ -81,16 +114,9 @@ jobs:
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-          # Point the app at your deployed API without editing gradle.properties.
-          # Add a repository variable named API_BASE_URL to override the default.
-          BGMI_API_BASE_URL: ${{ vars.API_BASE_URL }}
         run: |
           set -euo pipefail
-          ARGS=""
-          if [ -n "${BGMI_API_BASE_URL}" ]; then
-            ARGS="-Pbgmi.apiBaseUrl=${BGMI_API_BASE_URL}"
-          fi
-          ./gradlew --no-daemon assembleRelease ${ARGS}
+          ./gradlew --no-daemon assembleRelease
 
       - name: Verify the APK is signed with the release key
         if: steps.keystore.outputs.signed == 'true'
