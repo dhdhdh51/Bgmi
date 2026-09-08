@@ -1,0 +1,30 @@
+## Android / Gradle
+*.iml
+.gradle/
+build/
+local.properties
+.idea/
+.cxx/
+captures/
+.externalNativeBuild/
+
+## Signing material — never commit these
+*.keystore
+*.jks
+*.p12
+keystore_base64.txt
+
+## Build outputs
+*.apk
+*.aab
+*.ap_
+*.dex
+output.json
+
+## PHP backend local configuration (contains DB credentials)
+backend/config.php
+
+## OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp

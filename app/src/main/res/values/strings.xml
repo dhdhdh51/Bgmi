@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BGMI Sensitivity</string>
+
+    <!-- Titles -->
+    <string name="title_manual_select">Choose a phone</string>
+    <string name="title_results">Recommended sensitivity</string>
+    <string name="title_history">Saved devices</string>
+    <string name="title_feedback">Feedback</string>
+
+    <!-- Home -->
+    <string name="home_headline">Scope-by-scope sensitivity for your phone</string>
+    <string name="home_subhead">Your phone\'s screen size, refresh rate and pixel density decide how far your thumb has to travel. Detect them and get values tuned for this device.</string>
+    <string name="action_detect">Detect my device</string>
+    <string name="action_manual_select">Pick a phone manually</string>
+    <string name="action_history">Saved devices</string>
+    <string name="detected_specs_title">Detected hardware</string>
+    <string name="requesting">Calculating recommendation…</string>
+
+    <!-- Spec labels -->
+    <string name="spec_model">Model</string>
+    <string name="spec_screen">Screen</string>
+    <string name="spec_resolution">Resolution</string>
+    <string name="spec_density">Density</string>
+    <string name="spec_refresh">Refresh rate</string>
+    <string name="spec_android">Android</string>
+    <string name="spec_gyroscope">Gyroscope</string>
+    <string name="spec_touch_sampling">Touch sampling</string>
+    <string name="spec_touch_sampling_note">from server database</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="value_inches">%1$.2f inches</string>
+    <string name="value_dpi">%1$d dpi</string>
+    <string name="value_hz">%1$d Hz</string>
+    <string name="value_android">API level %1$d</string>
+    <string name="value_unknown">could not measure</string>
+
+    <!-- Results -->
+    <string name="section_camera">Camera sensitivity</string>
+    <string name="section_ads">ADS sensitivity</string>
+    <string name="section_scopes">Scopes</string>
+    <string name="section_gyroscope">Gyroscope</string>
+    <string name="row_free_look">Free look</string>
+    <string name="row_tpp_no_scope">TPP no-scope</string>
+    <string name="row_fpp_no_scope">FPP no-scope</string>
+    <string name="row_red_dot_tpp">Red dot / Holo / 2x (TPP)</string>
+    <string name="row_red_dot_fpp">Red dot / Holo / 2x (FPP)</string>
+    <string name="row_3x">3x scope</string>
+    <string name="row_4x">4x scope</string>
+    <string name="row_6x">6x scope</string>
+    <string name="row_8x">8x scope</string>
+    <string name="row_ads">ADS sensitivity</string>
+    <string name="action_copy_all">Copy all</string>
+    <string name="action_copy">Copy</string>
+    <string name="action_send_feedback">Rate this recommendation</string>
+    <string name="copied">Copied to clipboard</string>
+    <string name="banner_estimate">This phone is not in the database yet, so the touch sampling rate was estimated. Values are a good starting point — fine-tune in-game.</string>
+    <string name="banner_matched">Matched in the phone database, including this panel\'s touch sampling rate.</string>
+    <string name="saved_to_history">Saved to your devices</string>
+    <string name="results_footer">BGMI sensitivity values are personal. Use these as a baseline, then adjust in Training mode until recoil feels controllable.</string>
+
+    <!-- Manual select -->
+    <string name="search_hint">Search by brand or model</string>
+    <string name="manual_empty">No phones matched that search.</string>
+    <string name="manual_hint_start">Start typing to search the phone database.</string>
+
+    <!-- History -->
+    <string name="history_empty">Nothing saved yet. Detect your device or pick a phone manually.</string>
+    <string name="history_meta">%1$s • %2$s</string>
+    <string name="history_badge_estimate">estimated</string>
+    <string name="history_badge_matched">database match</string>
+    <string name="action_clear_history">Clear all</string>
+    <string name="history_cleared">History cleared</string>
+    <string name="history_deleted">Removed %1$s</string>
+    <string name="action_delete">Remove</string>
+    <string name="confirm_clear_history_title">Clear saved devices?</string>
+    <string name="confirm_clear_history_message">This removes every saved recommendation from this phone. The phone database on the server is not affected.</string>
+
+    <!-- Feedback -->
+    <string name="feedback_intro">Did these values feel right in-game? Ratings are used to retune the formula.</string>
+    <string name="feedback_rating_label">How did it feel?</string>
+    <string name="feedback_scope_label">Which setting is this about?</string>
+    <string name="feedback_comment_hint">Anything else (optional)</string>
+    <string name="feedback_scope_overall">Overall</string>
+    <string name="action_submit">Send feedback</string>
+    <string name="feedback_thanks">Thanks — feedback sent</string>
+
+    <!-- Errors -->
+    <string name="error_title">Something went wrong</string>
+    <string name="error_generic">Unexpected error: %1$s</string>
+    <string name="action_dismiss">Dismiss</string>
+    <string name="error_no_specs">Could not read this device\'s screen specs. Pick your phone manually instead.</string>
+    <string name="error_rating_required">Choose a rating first.</string>
+</resources>
