@@ -135,6 +135,19 @@ device, scaled by three factors:
 Results are rounded and clamped to BGMI's valid 1–300 range. A 6.5" 60 Hz phone
 reproduces the baselines exactly, which makes accidental changes easy to spot.
 
+The app outputs the same rows the game does, including the **gyroscope tab's
+no-scope and red dot/2x rows**, not just the scopes. Gyroscope baselines follow
+inverse magnification — the same head turn should move the crosshair the same
+distance on screen — anchored on the reference 3x value of 120:
+
+| Row | Derivation | Baseline |
+| --- | --- | --- |
+| TPP / FPP no-scope | `3/1 × 120 = 360`, capped at BGMI's 300 | 300 |
+| Red dot / Holo / 2x | `3/2 × 120` | 180 |
+| 3x | anchor | 120 |
+| 4x | `3/4 × 120` | 90 |
+| 6x, 8x | damped below the pure ratio: at high zoom the extra shake is harder to control than the maths implies | 55, 35 |
+
 Because the app is offline by design, **retuning means shipping a new APK.**
 That is the deliberate trade-off for having no server to run: fewer moving parts
 and nothing to pay for, at the cost of updates going through a release.

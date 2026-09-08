@@ -41,6 +41,27 @@ object SensitivityCalculator {
     private const val BASE_SCOPE_8X = 11
     private const val BASE_ADS = 55
 
+    /*
+     * Gyroscope baselines.
+     *
+     * Gyro sensitivity scales inversely with magnification: the same head turn
+     * should move the crosshair the same distance on screen, so a 2x view needs
+     * roughly half the sensitivity of hip-fire and a 6x view a sixth of it. The
+     * reference 3x value of 120 anchors the curve:
+     *
+     *   no-scope (1x)  3/1 x 120 = 360 -> capped at BGMI's 300 maximum
+     *   red dot / 2x   3/2 x 120 = 180
+     *   3x                          120
+     *   4x             3/4 x 120 =  90
+     *   6x / 8x        damped below the pure ratio, because at high zoom the
+     *                  extra shake is harder to control than the maths implies
+     *
+     * TPP and FPP no-scope share a baseline: both are hip-fire, and the honest
+     * answer is that the difference is smaller than personal preference.
+     */
+    private const val BASE_GYRO_TPP_NO_SCOPE = 300
+    private const val BASE_GYRO_FPP_NO_SCOPE = 300
+    private const val BASE_GYRO_RED_DOT_2X = 180
     private const val BASE_GYRO_3X = 120
     private const val BASE_GYRO_4X = 90
     private const val BASE_GYRO_6X = 55
@@ -119,6 +140,9 @@ object SensitivityCalculator {
             scope8x = scale(BASE_SCOPE_8X, combined),
             adsSensitivity = scale(BASE_ADS, combined),
             gyroscope = GyroSensitivity(
+                tppNoScope = scale(BASE_GYRO_TPP_NO_SCOPE, combined),
+                fppNoScope = scale(BASE_GYRO_FPP_NO_SCOPE, combined),
+                redDotHolo2x = scale(BASE_GYRO_RED_DOT_2X, combined),
                 scope3x = scale(BASE_GYRO_3X, combined),
                 scope4x = scale(BASE_GYRO_4X, combined),
                 scope6x = scale(BASE_GYRO_6X, combined),

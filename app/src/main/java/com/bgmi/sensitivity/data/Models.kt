@@ -103,7 +103,19 @@ data class CameraSensitivity(val freeLook: Int, val tppNoScope: Int, val fppNoSc
 
 data class ScopePair(val tpp: Int, val fpp: Int)
 
-data class GyroSensitivity(val scope3x: Int, val scope4x: Int, val scope6x: Int, val scope8x: Int)
+/**
+ * Mirrors BGMI's Gyroscope tab, which has the same rows as ADS: no-scope for
+ * both perspectives, red dot/holo/2x, then each scope.
+ */
+data class GyroSensitivity(
+    val tppNoScope: Int,
+    val fppNoScope: Int,
+    val redDotHolo2x: Int,
+    val scope3x: Int,
+    val scope4x: Int,
+    val scope6x: Int,
+    val scope8x: Int,
+)
 
 /**
  * A complete recommendation.
@@ -128,6 +140,7 @@ data class SensitivityResult(
     val savedAtMillis: Long,
 ) {
     fun toJson(): JSONObject = JSONObject().apply {
+        put("schema", SCHEMA_VERSION)
         put("model", model)
         put("matched_in_database", matchedInDatabase)
         put("is_estimate", isEstimate)
@@ -167,6 +180,9 @@ data class SensitivityResult(
                 put(
                     "gyroscope",
                     JSONObject().apply {
+                        put("tpp_no_scope", gyroscope.tppNoScope)
+                        put("fpp_no_scope", gyroscope.fppNoScope)
+                        put("red_dot_holo_2x", gyroscope.redDotHolo2x)
                         put("3x", gyroscope.scope3x)
                         put("4x", gyroscope.scope4x)
                         put("6x", gyroscope.scope6x)
@@ -178,6 +194,15 @@ data class SensitivityResult(
     }
 
     companion object {
+        /**
+         * Bumped whenever the stored shape gains values that cannot be
+         * back-filled — history entries written by an older version are dropped
+         * rather than shown with zeroes in the new rows.
+         */
+        const val SCHEMA_VERSION = 2
+
+        fun schemaOf(json: JSONObject): Int = json.optInt("schema", 1)
+
         fun fromJson(json: JSONObject): SensitivityResult {
             val sensitivities = json.optJSONObject("sensitivities") ?: JSONObject()
             val camera = sensitivities.optJSONObject("camera") ?: JSONObject()
@@ -215,6 +240,9 @@ data class SensitivityResult(
                 scope8x = sensitivities.optInt("scope_8x", 0),
                 adsSensitivity = sensitivities.optInt("ads_sensitivity", 0),
                 gyroscope = GyroSensitivity(
+                    tppNoScope = gyro.optInt("tpp_no_scope", 0),
+                    fppNoScope = gyro.optInt("fpp_no_scope", 0),
+                    redDotHolo2x = gyro.optInt("red_dot_holo_2x", 0),
                     scope3x = gyro.optInt("3x", 0),
                     scope4x = gyro.optInt("4x", 0),
                     scope6x = gyro.optInt("6x", 0),

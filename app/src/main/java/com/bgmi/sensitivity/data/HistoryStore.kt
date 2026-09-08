@@ -24,6 +24,10 @@ class HistoryStore(context: Context) {
         }
         return (0 until array.length())
             .mapNotNull { array.optJSONObject(it) }
+            // Entries saved before the current shape cannot be back-filled (for
+            // example they predate the gyroscope no-scope rows), so drop them
+            // instead of showing blanks. Re-detecting takes one tap.
+            .filter { SensitivityResult.schemaOf(it) >= SensitivityResult.SCHEMA_VERSION }
             .map { SensitivityResult.fromJson(it) }
             .sortedByDescending { it.savedAtMillis }
     }

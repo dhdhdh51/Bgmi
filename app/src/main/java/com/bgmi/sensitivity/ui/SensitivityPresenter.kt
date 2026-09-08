@@ -40,7 +40,26 @@ object SensitivityPresenter {
         add(SensitivityListItem.Row(context.getString(R.string.row_ads), result.adsSensitivity))
 
         if (includeGyroscope) {
+            // Same rows as the in-game Gyroscope tab, in the same order.
             add(SensitivityListItem.Header(context.getString(R.string.section_gyroscope)))
+            add(
+                SensitivityListItem.Row(
+                    context.getString(R.string.row_tpp_no_scope),
+                    result.gyroscope.tppNoScope,
+                ),
+            )
+            add(
+                SensitivityListItem.Row(
+                    context.getString(R.string.row_fpp_no_scope),
+                    result.gyroscope.fppNoScope,
+                ),
+            )
+            add(
+                SensitivityListItem.Row(
+                    context.getString(R.string.row_red_dot_holo_2x),
+                    result.gyroscope.redDotHolo2x,
+                ),
+            )
             add(SensitivityListItem.Row(context.getString(R.string.row_3x), result.gyroscope.scope3x))
             add(SensitivityListItem.Row(context.getString(R.string.row_4x), result.gyroscope.scope4x))
             add(SensitivityListItem.Row(context.getString(R.string.row_6x), result.gyroscope.scope6x))

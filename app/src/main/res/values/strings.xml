@@ -44,6 +44,7 @@
     <string name="row_fpp_no_scope">FPP no-scope</string>
     <string name="row_red_dot_tpp">Red dot / Holo / 2x (TPP)</string>
     <string name="row_red_dot_fpp">Red dot / Holo / 2x (FPP)</string>
+    <string name="row_red_dot_holo_2x">Red dot / Holo / 2x</string>
     <string name="row_3x">3x scope</string>
     <string name="row_4x">4x scope</string>
     <string name="row_6x">6x scope</string>
