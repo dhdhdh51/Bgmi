@@ -40,13 +40,21 @@ jobs:
           java-version: '17'
           cache: gradle
 
-      - name: Install Android SDK packages
-        # The hosted image does not always carry the newest platform. Installing
-        # explicitly avoids relying on AGP's implicit SDK download.
+      - name: Ensure Android SDK packages
+        # The hosted image already ships the platform and build-tools this
+        # project needs, so a failure here is informational, not fatal — AGP can
+        # still download what it needs (licences are pre-accepted on the image).
+        #
+        # Note the package name: since Android 16 QPR the SDK uses
+        # minor-versioned platforms, so API level 37 is "android-37.0", not
+        # "android-37".
         run: |
-          set -euo pipefail
-          "${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager" --install \
-            "platforms;android-37" "build-tools;36.0.0" > /dev/null
+          set -uo pipefail
+          SDKMANAGER="${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager"
+          "${SDKMANAGER}" --install "platforms;android-37.0" "build-tools;36.0.0" > /dev/null \
+            || echo "::warning::sdkmanager could not install those packages; using the preinstalled SDK."
+          echo "Available platforms:"; ls -1 "${ANDROID_HOME}/platforms"
+          echo "Available build-tools:"; ls -1 "${ANDROID_HOME}/build-tools"
 
       - name: Lint PHP backend
         run: |
